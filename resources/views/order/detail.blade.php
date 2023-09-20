@@ -21,8 +21,8 @@
                             @foreach($customers as $customer)
                                 <tr>
                                     <td>{{$customer->customer}}</td>
-                                    <td>{{$customer->amount}}</td>
-                                    <td><button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#modal-{{$customer->customer}}"></button></td>
+                                    <td class="amount">{{$customer->amount}}</td>
+                                    <td><button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#modal-{{$customer->id}}"></button></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -34,7 +34,7 @@
 
     <!-- Modal Detail Tiap Pemesan -->
     @foreach($customers as $customer)
-    <div class="modal fade" id="modal-{{$customer->customer}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="modal-{{$customer->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -63,8 +63,8 @@
                                 <td>{{$order->sock}}</td>
                                 <td>{{$order->color}}</td>
                                 <td>{{$order->size}}</td>
-                                <td>{{$order->amount}}</td>
-                                <td>0</td>
+                                <td class="amount">{{$order->amount}}</td>
+                                <td class="amount">{{$order->production->sum('amount')}}</td>
                                 <td>{{$order->deadline}}</td>
                                 <td>
                                     <a href="#" onclick="finishOrder('{{ $order->id }}')">

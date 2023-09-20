@@ -12,7 +12,7 @@
                     <table class="table-ket">
                         <tr>
                             <th>Tanggal</th>
-                            <td>: 2023-09-01</td>
+                            <td>: {{$date}}</td>
                         </tr>
                     </table>
                     <table id="myTable" class="display">

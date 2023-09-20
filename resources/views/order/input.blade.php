@@ -20,9 +20,9 @@
                                             <div class="rs-select2 js-select-simple select--no-search customer0">
                                                 <select class="select-customer" name="customer" required>
                                                     <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    <option>Fulan</option>
-                                                    <option>Fulanah</option>
-                                                    <option>Al Fulan</option>
+                                                    @foreach($customers as $customer)
+                                                        <option>{{$customer->customer}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>
@@ -45,9 +45,9 @@
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select name="sock" required>
                                                     <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    <option>Jempol Polos</option>
-                                                    <option>Sport</option>
-                                                    <option>Mensock</option>
+                                                    @foreach($socks as $sock)
+                                                        <option>{{$sock->sock}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>
@@ -59,10 +59,9 @@
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select name="color" required>
                                                     <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    <option>Hitam</option>
-                                                    <option>Putih</option>
-                                                    <option>Maroon</option>
-                                                    <option>Navy</option>
+                                                    @foreach($colors as $color)
+                                                        <option>{{$color->color}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>

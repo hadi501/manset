@@ -19,8 +19,9 @@
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select name="operator" required>
                                                     <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    <option>Fulan</option>
-                                                    <option>Fulanah</option>
+                                                    @foreach($operators as $operator)
+                                                        <option>{{$operator->name}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>
@@ -93,7 +94,7 @@
                                     <td>{{$customer->customer}}</td>
                                     <td>{{$customer->amount}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#modal-{{$customer->customer}}"></button>
+                                        <button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#modal-{{$customer->id}}"></button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -106,7 +107,7 @@
 
     <!-- Modal Detail Tiap Pemesan -->
     @foreach($customers as $customer)
-    <div class="modal fade" id="modal-{{$customer->customer}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="modal-{{$customer->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -134,7 +135,7 @@
                                     <td>{{$order->size}}</td>
                                     <td>
                                         <a href="#">
-                                            <button type="button" class="btn btn-info btn-aksi" onclick="getId('{{ $order->id }}')"></button>
+                                            <button type="button" class="btn btn-info btn-aksi" onclick="getId('{{ $order->id }}','modal-{{$customer->id}}')"></button>
                                         </a>
                                     </td>
                                 </tr>

@@ -12,19 +12,49 @@
                     <table class="table-ket">
                         <tr>
                             <th>Tanggal</th>
-                            <td>: 2023-09-01</td>
+                            <td>: {{$date}}</td>
                         </tr>
                         <tr>
                             <th>Pagi</th>
-                            <td>: Fulanah</td>
+                            <td> : {{$productions->where('shift', '0')->sum('amount')/12}} dz |
+                                @foreach($morning as $data)
+                                    @if(!$loop->last)         
+                                        {{$data->operator}},   
+                                    @else
+                                        {{$data->operator}}        
+                                    @endif
+                                @endforeach
+                            </td>
                         </tr>
                         <tr>
                             <th>Siang</th>
-                            <td>: Fulanah</td>
+                            <td> : {{$productions->where('shift', '1')->sum('amount')/12}} dz |
+                                @foreach($afternoon as $data)
+                                    @if(!$loop->last)         
+                                        {{$data->operator}},   
+                                    @else
+                                        {{$data->operator}}        
+                                    @endif
+                                @endforeach
+                            </td>
                         </tr>
                         <tr>
                             <th>Malam</th>
-                            <td>: Fulanah</td>
+                            <td> : {{$productions->where('shift', '2')->sum('amount')/12}} dz |
+                                @foreach($evening as $data)
+                                    @if(!$loop->last)         
+                                        {{$data->operator}},   
+                                    @else
+                                        {{$data->operator}}        
+                                    @endif
+                                @endforeach  
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td>
+                                : {{$productions->sum('amount')/12}} dz
+                            </td>
                         </tr>
                     </table>
                     <table id="myTable" class="display">
@@ -40,32 +70,33 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($productions as $production)
                             <tr>
-                                <td>Pagi</td>
-                                <td>1</td>
-                                <td data-toggle="popover" title="Sport" data-content="Warna: Biru | Ukuran: 30x25 | Pesanan: 10dz">Abdullah</td>
-                                <td>Sport</td>
-                                <td>4dz</td>
-                                <td>07:30 07:57 08:32 08:59</td>
+                                @switch($production->shift)
+                                    @case(0)
+                                        <td>Pagi</td>
+                                        @break
+                                    @case(1)
+                                        <td>Siang</td>
+                                        @break
+                                    @case(2)
+                                        <td>Malam</td>
+                                        @break
+                                    @default
+                                        <td>Something went wrong, please try again</td>
+                                @endswitch
+                                <td>{{$production->machine_no}}</td>
+                                <td data-toggle="popover" title="Sport" data-content="Warna: {{$production->order->color}} | Ukuran: {{$production->order->size}} | Pesanan: {{$production->order->amount/12}} dz">{{$production->order->customer}}</td>
+                                <td>{{$production->order->sock}}</td>
+                                <td class="amount">{{$production->amount}}</td>
+                                <td>{{$production->time}}</td>
                                 <td>
-                                    <a href="{{ route('production.edit', 1) }}">
+                                    <a href="{{ route('production.edit', $production->id) }}">
                                         <button type="button" class="btn btn-warning btn-aksi" data-toggle="modal" data-target="#exampleModalCenter"></button>
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Siang</td>
-                                <td>1</td>
-                                <td data-toggle="popover" title="Jempol Polos" data-content="Warna: Hitam | Ukuran: 30 | Pesanan: 15dz">Ibadullah</td>
-                                <td>Jempol Polos</td>
-                                <td>5dz</td>
-                                <td>09:30 09:57 10:32 10:59 11:40 09:30 09:57 10:32 10:59 11:40</td>
-                                <td>
-                                    <a href="{{ route('production.edit', 1) }}">
-                                        <button type="button" class="btn btn-warning btn-aksi" data-toggle="modal" data-target="#exampleModalCenter"></button>
-                                    </a>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

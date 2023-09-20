@@ -95,6 +95,20 @@
                             </div>
                         </div>
 
+                        <div class="form-row m-b-55">
+                            <div class="name">Tanggal</div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-12">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" type="date" name="date" required>
+                                            <!-- <label class="label--desc">first name</label> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-row">
                             <div class="name">Jumlah</div>
                             <div class="value">

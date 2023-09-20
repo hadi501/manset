@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\Sock;
+use App\Models\Color;
 use App\Models\History;
 
 class OrderController extends Controller
@@ -23,7 +25,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order.input');
+        $socks = Sock::All();
+        $colors = Color::All();
+        $customers = Order::select('customer')->groupBy('customer')->get();
+
+        return view('order.input',['socks' => $socks, 'colors' => $colors, 'customers' => $customers]);
     }
 
     /**
@@ -33,8 +39,8 @@ class OrderController extends Controller
     {
         // dd($request);
 
-        $size   = app(OrderController::class)->getSize($request->size1, $request->size2);
-        $amount = app(OrderController::class)->getAmount($request->amount, $request->unit);
+        $size   = app(Controller::class)->getSize($request->size1, $request->size2);
+        $amount = app(Controller::class)->getAmount($request->amount, $request->unit);
         
         $data = Order::where([
             ['customer', '=', $request->customer],
@@ -69,20 +75,13 @@ class OrderController extends Controller
         
     }
 
-    public function coba(){
-
-        $size = app(OrderController::class)->getSize("31", "25");
-        $amount = app(OrderController::class)->getAmount("10", "1");
-        
-        return $amount;
-    }
 
     /**
      * Show the detail for the orders.
      */
     public function detail()
     {
-        $orders    = Order::All();
+        $orders    = Order::with('production')->get();
         $customers = Order::select([DB::raw("customer as customer"), DB::raw("SUM(amount) as amount")])->groupBy('customer')->get();
 
         return view('order.detail',['orders' => $orders, 'customers' => $customers]);
@@ -102,6 +101,8 @@ class OrderController extends Controller
     public function edit(string $id)
     {
         $order = Order::Find($id);
+        $socks = Sock::All();
+        $colors = Color::All();
 
         // cek jika pesanan memiliki ukuran 2 dimensi
         $size = $order->size;    
@@ -124,7 +125,7 @@ class OrderController extends Controller
             $order->unit = 1; // 1 = Pasang
         }
 
-        return view('order.edit')->with('order', $order);
+        return view('order.edit',['order' => $order, 'socks' => $socks, 'colors' => $colors]);
     }
 
     /**
@@ -132,8 +133,8 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $size   = app(OrderController::class)->getSize($request->size1, $request->size2);
-        $amount = app(OrderController::class)->getAmount($request->amount, $request->unit);
+        $size   = app(Controller::class)->getSize($request->size1, $request->size2);
+        $amount = app(Controller::class)->getAmount($request->amount, $request->unit);
 
         $order            = Order::find($request->id);
         $order->customer  = $request->customer;
@@ -194,23 +195,5 @@ class OrderController extends Controller
 
         return redirect('/order/detail/1')->with('success', ['message' => 'Data berhasil Dihapus!']);
         
-    }
-
-    private function getSize($size1, $size2)
-    {
-        if($size2 == null){
-            $size   = $size1;
-        }else{
-            $size   = $size1."x".$size2;
-        }
-        return $size;
-    }
-
-    private function getAmount($amount, $unit)
-    {
-        if($unit == "0"){
-            $amount = $amount * 12;
-        }
-        return $amount;
     }
 }

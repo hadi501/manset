@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Finishing;
+use App\Models\Employe;
+use App\Models\Order;
 
 class FinishingController extends Controller
 {
@@ -19,7 +24,11 @@ class FinishingController extends Controller
      */
     public function create()
     {
-        return view('finishing.input');
+        $orders     = Order::All();
+        $customers  = Order::select([DB::raw("customer as customer"), DB::raw("SUM(amount) as amount")])->groupBy('customer')->get();
+        $employes   = Employe::where('task', '2')->orWhere('task', '3')->get();
+
+        return view('finishing.input', ['orders' => $orders, 'customers' => $customers,'employes' => $employes]);
     }
 
     /**
@@ -27,7 +36,15 @@ class FinishingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $amount = app(Controller::class)->getAmount($request->amount, $request->unit);
+        $date = Carbon::now()->format('Y-m-d');
+
+        $finishing = Finishing::updateOrCreate(
+            ['order_id' => $request->order_id, 'employe_id' => $request->employe_id, 'date' => $date],
+            ['amount' => $amount]
+        );
+
+        return redirect('/finishing/create')->with('success', ['message' => 'Finishing Telah Diinput!']);
     }
 
     /**

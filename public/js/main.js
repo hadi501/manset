@@ -1,5 +1,6 @@
 $(document).ready( function () {
     $('#myTable').DataTable();
+	amountFormat();
 } );
 
 $('.btn').on('click', function(e) {
@@ -7,6 +8,27 @@ $('.btn').on('click', function(e) {
         e.preventDefault();
     }
 });
+
+function amountFormat(){
+    
+    let amount;
+    const element = $(".amount");
+    
+    for(i=0; i<element.length; i++){
+    
+        let a = element[i].innerHTML / 12;
+        
+        if(Number.isInteger(a) == false){
+            let b = a - Math.floor(a);
+            let c = Math.round(b * 12);
+            amount = Math.floor(a) + " dz " + c + " ps";
+        }else{
+            amount = a + " dz";
+        }
+    
+        element[i].innerHTML = amount;
+    }
+}
 
 $(function() {
 
@@ -40,7 +62,5 @@ $(function() {
 			}
     }
 	}); 
-
-    
 
 });

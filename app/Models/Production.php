@@ -11,7 +11,7 @@ class Production extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'order_id',
-        'employe_id',
+        'operator',
         'shift',
         'machine_no',
         'amount',
@@ -20,4 +20,9 @@ class Production extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function Order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

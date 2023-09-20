@@ -57,4 +57,4 @@ Route::resources(['/sock' => SockController::class]);
 //Employe
 Route::resources(['/color' => ColorController::class]);
 
-Route::get('/coba', [OrderController::class, 'coba' ]);
+Route::get('/coba', [Controller::class, 'coba' ]);

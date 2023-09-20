@@ -39,9 +39,9 @@
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select name="sock" required>
                                                     <option disabled="disabled">Choose option</option>
-                                                    <option value="Mensock" {{ ($order->sock  == 'Mensock') ? 'selected' : '' }}>Mensock</option>
-                                                    <option value="Jempol Polos" {{ ($order->sock  == 'Jempol Polos') ? 'selected' : '' }}>Jempol Polos</option>
-                                                    <option value="Sport" {{ ($order->sock  == 'Sport') ? 'selected' : '' }}>Sport</option>
+                                                    @foreach($socks as $sock)
+                                                        <option value="{{$sock->sock}}" {{ ($order->sock  == $sock->sock) ? 'selected' : '' }}>{{$sock->sock}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>
@@ -53,9 +53,9 @@
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select name="color" required>
                                                     <option disabled="disabled">Choose option</option>
-                                                    <option value="Hitam" {{ ($order->color  == 'Hitam') ? 'selected' : '' }}>Hitam</option>
-                                                    <option value="Putih" {{ ($order->color  == 'Putih') ? 'selected' : '' }}>Putih</option>
-                                                    <option value="Biru" {{ ($order->color  == 'Biru') ? 'selected' : '' }}>Biru</option>
+                                                    @foreach($colors as $color)
+                                                        <option value="{{$color->color}}" {{ ($order->color  == $color->color) ? 'selected' : '' }}>{{$color->color}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>

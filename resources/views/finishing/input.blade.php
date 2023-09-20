@@ -9,7 +9,8 @@
                     <h2 class="title">Input Finishing</h2>
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form action="{{route('finishing.store')}}" method="POST">
+                        {{ csrf_field() }}
                         <div class="form-row m-b-55">
                             <div class="name">Karyawan</div>
                             <div class="value">
@@ -17,10 +18,11 @@
                                     <div class="col-6">
                                         <div class="input-group-desc">
                                             <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="operator" required>
+                                                <select name="employe_id" required>
                                                     <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    <option>Fulan</option>
-                                                    <option>Fulanah</option>
+                                                    @foreach($employes as $employe)    
+                                                        <option value="{{$employe->id}}">{{$employe->name}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>
@@ -29,7 +31,7 @@
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="number" name="order_id" required>
+                                            <input class="input--style-5" type="number" name="order_id" id="order_id" required>
                                             <label class="label--desc">ID PO</label>
                                         </div>
                                     </div>
@@ -44,8 +46,8 @@
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select name="unit" required>
                                                     <option disabled="disabled" selected="selected" value="">Unit</option>
-                                                    <option>Lusin</option>
-                                                    <option>Pasang</option>
+                                                    <option value="0">Lusin</option>
+                                                    <option value="1">Pasang</option>
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>
@@ -82,16 +84,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($customers as $customer)    
                             <tr>
-                                <td>Abdullah</td>
-                                <td>20dz</td>
-                            <td><button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#exampleModalCenter"></button></td>
+                                <td>{{$customer->customer}}</td>
+                                <td class="amount">{{$customer->amount}}</td>
+                                <td><button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#modal-{{$customer->id}}"></button></td>
                             </tr>
-                            <tr>
-                                <td>Ibadullah</td>
-                                <td>20dz</td>
-                                <td><button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#exampleModalCenter"></button></td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -100,11 +99,12 @@
     </div>
 
     <!-- Modal Detail Tiap Pemesan -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    @foreach($customers as $customer)
+    <div class="modal fade" id="modal-{{$customer->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalCenterTitle"><b>Abdullah</b></h4>
+                    <h4 class="modal-title" id="exampleModalCenterTitle"><b>{{$customer->customer}}</b></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -120,26 +120,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($orders as $order)
+                            @if($customer->customer == $order->customer)
                             <tr>
-                                <td>Jempol Polos</td>
-                                <td>Merah</td>
-                                <td>30</td>
+                                <td>{{$order->sock}}</td>
+                                <td>{{$order->color}}</td>
+                                <td>{{$order->size}}</td>
                                 <td>
                                     <a href="#">
-                                        <button type="button" class="btn btn-info btn-aksi" data-toggle="modal" data-target="#exampleModalCenter"></button>
+                                        <button type="button" class="btn btn-info btn-aksi" onclick="getId('{{ $order->id }}','modal-{{$customer->id}}')"></button>
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Mensock</td>
-                                <td>Hitam</td>
-                                <td>27x25</td>
-                                <td>
-                                    <a href="#">
-                                        <button type="button" class="btn btn-info btn-aksi" data-toggle="modal" data-target="#exampleModalCenter"></button>
-                                    </a>
-                                </td>
-                            </tr>
+                            @endif
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -148,6 +142,7 @@
             </div>
         </div>
     </div>
+    @endforeach
 
     @push('styles')
         <link href="{{ asset('vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
