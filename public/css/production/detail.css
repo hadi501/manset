@@ -5,9 +5,22 @@
     width: 17.5%;
 }
 
+.w-5{
+    width: 5%;
+}
+
+.w-10{
+    width: 10%;
+}
+
+.w-15{
+    width: 15%;
+}
+
 .th-no, .th-shift , .th-aksi{
     width: 10%;
 }
+
 .table-ket{
     width: 40% !important;
     margin-bottom: 1rem;

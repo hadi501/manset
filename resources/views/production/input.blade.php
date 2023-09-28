@@ -11,56 +11,91 @@
                 <div class="card-body">
                     <form action="{{route('production.store')}}" method="POST">
                         {{ csrf_field() }}
-                        <div class="form-row m-b-55">
-                            <!-- <div class="value"> -->
+                        <div class="form-row">
+                            <div class="name">Tanggal</div>
+                            <div class="value">
                                 <div class="row row-space">
-                                    <div class="col-4">
+                                    <div class="col-6">
                                         <div class="input-group-desc">
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="operator" required>
-                                                    <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    @foreach($operators as $operator)
-                                                        <option>{{$operator->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
-                                            <label class="label--desc">Operator</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <input class="input--style-5" type="number" name="order_id" id="order_id" required>
-                                            <label class="label--desc">ID PO</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <input class="input--style-5" type="number" name="machine_no" required>
-                                            <label class="label--desc">No Mesin</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <input class="input--style-5" type="number" name="amount" required>
-                                            <label class="label--desc">Jumlah</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="unit" required>
-                                                    <option disabled="disabled" selected="selected" value="">Unit</option>
-                                                    <option value="0">Lusin</option>
-                                                    <option value="1">Pasang</option>
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
-                                            <label class="label--desc">Unit</label>
+                                            <input class="input--style-5" type="date" name="date" required>
+                                            <!-- <label class="label--desc">Dimensi 1</label> -->
                                         </div>
                                     </div>
                                 </div>
-                            <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Shift</div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-6">
+                                        <div class="input-group-desc">
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="shift" required>
+                                                    <option disabled="disabled" selected="selected" value="">Choose option</option>
+                                                        <option value="0">Pagi</option>
+                                                        <option value="1">Siang</option>
+                                                        <option value="2">Malam</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                            <!-- <label class="label--desc">Shift</label> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row m-b-55">
+                            <!-- <div class="value"> -->
+                            <div class="col-4">
+                                <div class="input-group-desc">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="employe_id" required>
+                                            <option disabled="disabled" selected="selected" value="">Choose option</option>
+                                            @foreach($operators as $operator)
+                                                <option value="{{$operator->id}}">{{$operator->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                    <label class="label--desc">Operator</label>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group-desc">
+                                    <input class="input--style-5" type="number" name="machine_no" required>
+                                    <label class="label--desc">No Mesin</label>
+                                </div>
+                            </div>
+                        <!-- </div> -->
+                        
+                            <!-- <div class="value"> -->
+                                <div class="col-2">
+                                    <div class="input-group-desc">
+                                        <input class="input--style-5" type="number" name="order_id" id="order_id" required>
+                                        <label class="label--desc">ID PO</label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group-desc">
+                                        <input class="input--style-5" type="number" name="amount" required>
+                                        <label class="label--desc">Jumlah</label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group-desc">
+                                        <div class="rs-select2 js-select-simple select--no-search">
+                                            <select name="unit" required>
+                                                <option disabled="disabled" selected="selected" value="">Unit</option>
+                                                <option value="0">Lusin</option>
+                                                <option value="1">Pasang</option>
+                                            </select>
+                                            <div class="select-dropdown"></div>
+                                        </div>
+                                        <label class="label--desc">Unit</label>
+                                    </div>
+                                </div>
+                        <!-- </div> -->
                         </div>
                         <div class="form-row m-b-30">
                             <div class="col">
@@ -92,9 +127,9 @@
                             @foreach($customers as $customer)
                                 <tr>
                                     <td>{{$customer->customer}}</td>
-                                    <td>{{$customer->amount}}</td>
+                                    <td class="amount">{{$customer->amount}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#modal-{{$customer->id}}"></button>
+                                        <button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#modal-{{$loop->index}}"></button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -107,7 +142,8 @@
 
     <!-- Modal Detail Tiap Pemesan -->
     @foreach($customers as $customer)
-    <div class="modal fade" id="modal-{{$customer->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    {{$index = $loop->index}}
+    <div class="modal fade" id="modal-{{$loop->index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -135,7 +171,7 @@
                                     <td>{{$order->size}}</td>
                                     <td>
                                         <a href="#">
-                                            <button type="button" class="btn btn-info btn-aksi" onclick="getId('{{ $order->id }}','modal-{{$customer->id}}')"></button>
+                                            <button type="button" class="btn btn-info btn-aksi" onclick="getId('{{ $order->id }}','modal-{{$index}}')"></button>
                                         </a>
                                     </td>
                                 </tr>

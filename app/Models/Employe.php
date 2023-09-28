@@ -11,11 +11,16 @@ class Employe extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'name',
-        'task',
+        'task', // 0 = montir, 1 = operator, 2 = obras, 3 = finishing
         'phone',
         'created_at',
         'updated_at'
     ];
+
+    public function Production()
+    {
+        return $this->hasMany(Production::class);
+    }
 
     public function Finishing()
     {

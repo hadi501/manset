@@ -9,14 +9,20 @@
                     <h2 class="title">Edit Finishing</h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST">
-                        <div class="form-row m-b-55">
+                    <form action="{{route('finishing.update', $finishing->id)}}" method="POST">
+                    {{ csrf_field() }}
+                    @method('PUT')
+                        <div class="form-row">
                             <div class="name">Pemesan</div>
                             <div class="value">
                                 <div class="row row-space">
                                     <div class="col-12">
+                                        <div class="input-group-desc" hidden>
+                                            <input class="input--style-5" type="number" name="id" value="{{ $finishing->id }}" required>
+                                            <!-- <label class="label--desc">first name</label> -->
+                                        </div>
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="name" required>
+                                            <input class="input--style-5" type="text" name="customer" value="{{$finishing->order->customer}}" readonly required>
                                             <!-- <label class="label--desc">first name</label> -->
                                         </div>
                                     </div>
@@ -29,29 +35,13 @@
                                 <div class="row row-space">
                                     <div class="col-6">
                                         <div class="input-group-desc">
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="sock" required>
-                                                    <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    <option>Subject 1</option>
-                                                    <option>Subject 2</option>
-                                                    <option>Subject 3</option>
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
+                                            <input class="input--style-5" type="text" name="sock" value="{{$finishing->order->sock}}" readonly required>
                                             <label class="label--desc">Kaos Kaki</label>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group-desc">
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="color" required>
-                                                    <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    <option>Subject 1</option>
-                                                    <option>Subject 2</option>
-                                                    <option>Subject 3</option>
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
+                                            <input class="input--style-5" type="text" name="color" value="{{$finishing->order->color}}" readonly required>
                                             <label class="label--desc">warna</label>
                                         </div>
                                     </div>
@@ -59,49 +49,27 @@
                             </div>
                         </div>
 
-                        <div class="form-row m-b-55">
+                        <div class="form-row">
                             <div class="name">Karyawan</div>
                             <div class="value">
                                 <div class="row row-space">
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <div class="input-group-desc">
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="sock" required>
-                                                    <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    <option>Subject 1</option>
-                                                    <option>Subject 2</option>
-                                                    <option>Subject 3</option>
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
+                                            <input class="input--style-5" type="text" name="name" value="{{$finishing->employe->name}}" readonly required>
                                             <!-- <label class="label--desc">Kaos Kaki</label> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="input-group-desc">
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="color" required>
-                                                    <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    <option>Subject 1</option>
-                                                    <option>Subject 2</option>
-                                                    <option>Subject 3</option>
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
-                                            <label class="label--desc">Tugas</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-row m-b-55">
+                        <div class="form-row">
                             <div class="name">Tanggal</div>
                             <div class="value">
                                 <div class="row row-space">
                                     <div class="col-12">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="date" name="date" required>
+                                            <input class="input--style-5" type="date" name="date" value="{{$finishing->date}}" readonly required>
                                             <!-- <label class="label--desc">first name</label> -->
                                         </div>
                                     </div>
@@ -115,7 +83,7 @@
                                 <div class="row row-space">
                                     <div class="col-6">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="number" name="amount" required>
+                                            <input class="input--style-5" type="number" name="amount" value="{{$finishing->amount}}" required>
                                             <!-- <label class="label--desc">Dimensi 1</label> -->
                                         </div>
                                     </div>
@@ -124,8 +92,8 @@
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select name="unit" required>
                                                     <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    <option>Pasang</option>
-                                                    <option>Lusin</option>
+                                                    <option value="0" {{ ($finishing->unit  == '0') ? 'selected' : '' }}>Lusin</option>
+                                                    <option value="1" {{ ($finishing->unit  == '1') ? 'selected' : '' }}>Pasang</option>
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>

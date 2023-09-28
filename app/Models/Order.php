@@ -18,6 +18,7 @@ class Order extends Model
         'date',
         'deadline',
         'price',
+        'status',
         'created_at',
         'updated_at'
     ];
@@ -25,5 +26,10 @@ class Order extends Model
     public function Production()
     {
         return $this->hasMany(Production::class);
+    }
+
+    public function Finishing()
+    {
+        return $this->hasMany(Finishing::class);
     }
 }

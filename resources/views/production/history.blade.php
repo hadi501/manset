@@ -1,44 +1,14 @@
 @extends('layouts.master')
-@section('title', 'Pre-Order | Detail')
+@section('title', 'Pre-Order | History')
 
 @section('main')
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Detail Produksi</h2>
+                    <h2 class="title">History Produksi</h2>
                 </div>
                 <div class="card-body">
-                    <!-- <table class="table-ket">
-                        <tr>
-                            <th>Tanggal</th>
-                            <td>: </td>
-                        </tr>
-                        <tr>
-                            <th>Pagi</th>
-                            <td> : {{$productions->where('shift', '0')->sum('amount')/12}} dz |
-                                -
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Siang</th>
-                            <td> : {{$productions->where('shift', '1')->sum('amount')/12}} dz |
-                                -
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Malam</th>
-                            <td> : {{$productions->where('shift', '2')->sum('amount')/12}} dz |
-                                - 
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Total</th>
-                            <td>
-                                : {{$productions->sum('amount')/12}} dz
-                            </td>
-                        </tr>
-                    </table> -->
                     <table id="myTable" class="display">
                         <thead>
                             <tr>
@@ -50,7 +20,7 @@
                                 <th class="w-15">Pemesan</th>
                                 <th class="w-15">Kaos Kaki</th>
                                 <th class="w-10">Jumlah</th>
-                                <th class="w-10">Edit</th>
+                                <!-- <th class="w-10">Edit</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -76,11 +46,11 @@
                                 <td data-toggle="popover" title="{{$production->order->sock}}" data-content="Warna: {{$production->order->color}} <br /> Ukuran: {{$production->order->size}} <br /> Pesanan: {{$production->order->amount/12}} dz" data-html="true">{{$production->order->customer}}</td>
                                 <td>{{$production->order->sock}}</td>
                                 <td class="amount">{{$production->amount}}</td>
-                                <td>
+                                <!-- <td>
                                     <a href="{{ route('production.edit', $production->id) }}">
                                         <button type="button" class="btn btn-warning btn-aksi" data-toggle="modal" data-target="#exampleModalCenter"></button>
                                     </a>
-                                </td>
+                                </td> -->
                             </tr>
                             @endforeach
                         </tbody>

@@ -1,12 +1,12 @@
 @extends('layouts.master')
-@section('title', 'Finishing | Detail')
+@section('title', 'Finishing | History')
 
 @section('main')
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Detail Finishing</h2>
+                    <h2 class="title">History Finishing</h2>
                 </div>
                 <div class="card-body">
                     <!-- <table class="table-ket">
@@ -25,7 +25,7 @@
                                 <th class="w-15">Pemesan</th>
                                 <th class="w-15">Kaos Kaki</th>
                                 <th class="w-15">Jumlah</th>
-                                <th class="w-10">Aksi</th>
+                                <!-- <th class="w-10">Aksi</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -54,14 +54,14 @@
                                 <td data-toggle="popover" title="Jempol Polos" data-content="Warna: {{$finish->order->color}} <br /> Ukuran: {{$finish->order->size}} <br /> Pesanan: {{$finish->order->amount/12}} dz" data-html="true">{{$finish->order->customer}}</td>
                                 <td>{{$finish->order->sock}}</td>
                                 <td class="amount">{{$finish->amount}}</td>
-                                <td>
+                                <!-- <td>
                                     <a href="{{ route('finishing.edit', $finish->id) }}">
                                         <button type="button" class="btn btn-warning btn-aksi"></button>
                                     </a>
                                     <a href="#" onclick="deleteData('{{ $finish->id }}')">
                                         <button type="button" class="btn btn-danger btn-aksi"></button>
                                     </a>
-                                </td>
+                                </td> -->
                             </tr>
                             @endforeach
                         </tbody>
@@ -71,11 +71,6 @@
         </div>
     </div>
 
-    {{-- form delete hidden --}}
-    <form action="" method="POST" id="form-delete">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    </form>
 
     @push('styles')
 

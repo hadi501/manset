@@ -88,14 +88,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <!-- <div class="form-row">
                             <div class="name">Jam</div>
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="text" name="time" value="{{$production->time}}" required>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div>
                             <div class="row">
                                 <div class="col">

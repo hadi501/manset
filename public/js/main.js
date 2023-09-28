@@ -1,5 +1,6 @@
 $(document).ready( function () {
     $('#myTable').DataTable();
+    $('.table-detail').DataTable();
 	amountFormat();
 } );
 

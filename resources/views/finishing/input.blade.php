@@ -11,6 +11,19 @@
                 <div class="card-body">
                     <form action="{{route('finishing.store')}}" method="POST">
                         {{ csrf_field() }}
+                        <div class="form-row">
+                            <div class="name">Tanggal</div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-6">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" type="date" name="date" id="date" required>
+                                            <!-- <label class="label--desc">ID PO</label> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-row m-b-55">
                             <div class="name">Karyawan</div>
                             <div class="value">
@@ -88,7 +101,7 @@
                             <tr>
                                 <td>{{$customer->customer}}</td>
                                 <td class="amount">{{$customer->amount}}</td>
-                                <td><button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#modal-{{$customer->id}}"></button></td>
+                                <td><button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#modal-{{ $loop->index }}"></button></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -100,7 +113,8 @@
 
     <!-- Modal Detail Tiap Pemesan -->
     @foreach($customers as $customer)
-    <div class="modal fade" id="modal-{{$customer->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    {{$index = $loop->index}}
+    <div class="modal fade" id="modal-{{ $loop->index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -110,7 +124,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table id="table-detail" class="display">
+                    <table class="table-detail">
                         <thead>
                             <tr>
                                 <th>Kaos Kaki</th>
@@ -128,7 +142,7 @@
                                 <td>{{$order->size}}</td>
                                 <td>
                                     <a href="#">
-                                        <button type="button" class="btn btn-info btn-aksi" onclick="getId('{{ $order->id }}','modal-{{$customer->id}}')"></button>
+                                        <button type="button" class="btn btn-info btn-aksi" onclick="getId('{{ $order->id }}','modal-{{$index}}')"></button>
                                     </a>
                                 </td>
                             </tr>

@@ -37,15 +37,16 @@ Route::prefix('order')->group(function() {
 //Production
 Route::resources(['/production' => ProductionController::class]);
 Route::prefix('production')->group(function() {
-    Route::get('/get/detail', [ProductionController::class, 'getDetail'])->name('production.get.detail');
-    Route::post('/detail/1', [ProductionController::class, 'detail'])->name('production.detail');
+    // Route::get('/get/detail', [ProductionController::class, 'getDetail'])->name('production.get.detail');
+    Route::get('/detail/1', [ProductionController::class, 'detail'])->name('production.detail');
+    Route::get('/history/1', [ProductionController::class, 'history'])->name('production.history');
 });
 
 //Finishing
 Route::resources(['/finishing' => FinishingController::class]);
 Route::prefix('finishing')->group(function() {
-    Route::get('/get/detail', [FinishingController::class, 'getDetail'])->name('finishing.get.detail');
-    Route::post('/detail/1', [FinishingController::class, 'detail'])->name('finishing.detail');
+    Route::get('/detail/1', [FinishingController::class, 'detail'])->name('finishing.detail');
+    Route::get('/history/1', [FinishingController::class, 'history'])->name('finishing.history');
 });
 
 //Employe

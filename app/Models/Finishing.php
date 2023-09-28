@@ -12,11 +12,18 @@ class Finishing extends Model
     protected $fillable = [
         'order_id',
         'employe_id',
+        'task',
         'amount',
         'date',
+        'status',
         'created_at',
         'updated_at'
     ];
+
+    public function Order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 
     public function Employe()
     {

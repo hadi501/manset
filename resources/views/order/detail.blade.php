@@ -22,7 +22,7 @@
                                 <tr>
                                     <td>{{$customer->customer}}</td>
                                     <td class="amount">{{$customer->amount}}</td>
-                                    <td><button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#modal-{{$customer->id}}"></button></td>
+                                    <td><button type="button" class="btn btn-primary btn-aksi" data-toggle="modal" data-target="#modal-{{$loop->index}}"></button></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -34,7 +34,7 @@
 
     <!-- Modal Detail Tiap Pemesan -->
     @foreach($customers as $customer)
-    <div class="modal fade" id="modal-{{$customer->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="modal-{{$loop->index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -47,11 +47,12 @@
                     <table id="table-detail" class="detail-table" class="display">
                         <thead>
                             <tr>
-                                <th>Kaos Kaki</th>
+                                <th class="w-20">Kaos Kaki</th>
                                 <th>Warna</th>
-                                <th>Ukuran</th>
-                                <th>Jumlah</th>
-                                <th>Produksi</th>
+                                <th class="w-10">Ukuran</th>
+                                <th class="w-10">Jumlah</th>
+                                <th class="w-10">Produksi</th>
+                                <th class="w-10">Finishing</th>
                                 <th>Deadline</th>
                                 <th>Aksi</th>
                             </tr>
@@ -65,7 +66,8 @@
                                 <td>{{$order->size}}</td>
                                 <td class="amount">{{$order->amount}}</td>
                                 <td class="amount">{{$order->production->sum('amount')}}</td>
-                                <td>{{$order->deadline}}</td>
+                                <td class="amount">{{$order->finishing->where('task', '3')->sum('amount')}}</td>
+                                <td>{{\Carbon\Carbon::parse($order->deadline)->format('d M Y')}}</td>
                                 <td>
                                     <a href="#" onclick="finishOrder('{{ $order->id }}')">
                                         <button type="button" class="btn btn-success btn-aksi"></button>

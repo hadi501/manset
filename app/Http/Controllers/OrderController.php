@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\Production;
+use App\Models\Finishing;
 use App\Models\Sock;
 use App\Models\Color;
-use App\Models\History;
 
 class OrderController extends Controller
 {
@@ -27,7 +29,7 @@ class OrderController extends Controller
     {
         $socks = Sock::All();
         $colors = Color::All();
-        $customers = Order::select('customer')->groupBy('customer')->get();
+        $customers = Order::select('customer')->where('status', '0')->groupBy('customer')->get();
 
         return view('order.input',['socks' => $socks, 'colors' => $colors, 'customers' => $customers]);
     }
@@ -68,10 +70,12 @@ class OrderController extends Controller
                 'date'      => Carbon::now()->toDateString(),
                 'deadline'  => $request->deadline,
                 'price'     => $request->price,
+                'status'    => '0'
             ]);
         }
 
-        return redirect('/order/create')->with('success', ['message' => 'Data Berhasil Diinput!']);
+        Alert::success('Success!', 'Data Telah diinput');
+        return redirect('/order/create');
         
     }
 
@@ -81,8 +85,8 @@ class OrderController extends Controller
      */
     public function detail()
     {
-        $orders    = Order::with('production')->get();
-        $customers = Order::select([DB::raw("customer as customer"), DB::raw("SUM(amount) as amount")])->groupBy('customer')->get();
+        $orders    = Order::with(['production', 'finishing'])->get();
+        $customers = Order::select([DB::raw("customer as customer"), DB::raw("SUM(amount) as amount")])->where('status', '0')->groupBy('customer')->get();
 
         return view('order.detail',['orders' => $orders, 'customers' => $customers]);
     }
@@ -147,7 +151,8 @@ class OrderController extends Controller
             
         $order->save();
 
-        return redirect('/order/detail/1')->with('success', ['message' => 'Data Berhasil Diedit!']);
+        Alert::success('Updated!', 'Data Telah diupdate');
+        return redirect('/order/detail/1');
     }
 
     /**
@@ -155,33 +160,24 @@ class OrderController extends Controller
      */
     public function history()
     {
-        $orders     =  History::All();
-        $customers  =  History::select([
-                            DB::raw("customer as customer"),
-                            DB::raw("SUM(amount) as amount")
-                        ])->groupBy('customer')->get();
+        $orders    = Order::with(['production', 'finishing'])->get();
+        $customers = Order::select([DB::raw("customer as customer"), DB::raw("SUM(amount) as amount")])->where('status', '1')->groupBy('customer')->get();
 
-        return view('order.history',['customers' => $customers, 'orders' => $orders]);
+        return view('order.history',['orders' => $orders, 'customers' => $customers]);
     }
 
     public function finishOrder(Request $request){
-        // dd($request);
+        
         $order = Order::find($request->id);
 
-        $save = History::create([
-            'customer'   => $order->customer,
-            'sock'       => $order->sock,
-            'color'      => $order->color,
-            'size'       => $order->size,
-            'amount'     => $order->amount,
-            'date'       => $order->date,
-            'price'      => $order->price,
-            'created_at' => Carbon::now()->toDateString()
-        ]);
+        $order->status = '1';
+        $order->save();
 
-        $order->delete();
+        $order->production()->update(['status' => '1']);
+        $order->finishing()->update(['status' => '1']);
 
-        return redirect('/order/detail/1')->with('success', ['message' => 'Pesanan Telah Selesai!']);
+        Alert::success('Done!', 'Pesanan telah selesai');
+        return redirect('/order/detail/1');
 
     }
 
@@ -191,9 +187,13 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         $order = Order::find($id);
+
+        $order->production()->delete();
+        $order->finishing()->delete();
         $order->delete();
 
-        return redirect('/order/detail/1')->with('success', ['message' => 'Data berhasil Dihapus!']);
+        Alert::success('Deleted!', 'Data Telah dihapus');
+        return redirect('/order/detail/1');
         
     }
 }

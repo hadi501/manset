@@ -32,20 +32,10 @@
     
     <main>
         @include('sweetalert::alert')
-        @if (session('success'))
-            <div class="alert alert-success mt-2">
-                {{ session('success.message') }}
-            </div>
-        @endif
-          @if (session('error'))
-            <div class="alert alert-danger mt-2">
-                {{ session('error.message') }}
-            </div>
-        @endif
         @yield('main')
     </main>
-    
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>

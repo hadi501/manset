@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\Finishing;
+use App\Models\Employe;
 use App\Models\Production;
 use App\Models\Order;
 
@@ -62,9 +65,17 @@ class Controller extends BaseController
 
     public function coba(){
         
-        $orders = Order::with('production')->get();
+        // $order = Order::find(11);
+        
+        // $order->status = '1';
+        // $order->save();
 
-        return $orders[0]->production->sum('amount');
+        // $order->production()->update(['status' => '1']);
+        // $order->finishing()->update(['status' => '1']);
+
+        $customers  = Order::select([DB::raw("customer as customer"), DB::raw("SUM(amount) as amount")])->where('status', '0')->groupBy('customer')->get();
+
+        return $customers;
     
     }
 
