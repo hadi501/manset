@@ -160,7 +160,7 @@ class OrderController extends Controller
      */
     public function history()
     {
-        $orders    = Order::with(['production', 'finishing'])->get();
+        $orders    = Order::with(['production', 'finishing'])->where('status', '1')->get();
         $customers = Order::select([DB::raw("customer as customer"), DB::raw("SUM(amount) as amount")])->where('status', '1')->groupBy('customer')->get();
 
         return view('order.history',['orders' => $orders, 'customers' => $customers]);
