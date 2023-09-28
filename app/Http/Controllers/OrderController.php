@@ -85,7 +85,7 @@ class OrderController extends Controller
      */
     public function detail()
     {
-        $orders    = Order::with(['production', 'finishing'])->where('status', '0')->get();
+        $orders    = Order::with(['production', 'finishing'])->get();
         $customers = Order::select([DB::raw("customer as customer"), DB::raw("SUM(amount) as amount")])->where('status', '0')->groupBy('customer')->get();
 
         return view('order.detail',['orders' => $orders, 'customers' => $customers]);
@@ -160,7 +160,7 @@ class OrderController extends Controller
      */
     public function history()
     {
-        $orders    = Order::with(['production', 'finishing'])->where('status', '1')->get();
+        $orders    = Order::with(['production', 'finishing'])->get();
         $customers = Order::select([DB::raw("customer as customer"), DB::raw("SUM(amount) as amount")])->where('status', '1')->groupBy('customer')->get();
 
         return view('order.history',['orders' => $orders, 'customers' => $customers]);
