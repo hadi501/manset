@@ -42,29 +42,13 @@
                                 <div class="row row-space">
                                     <div class="col-6">
                                         <div class="input-group-desc">
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="sock" required>
-                                                    <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    @foreach($socks as $sock)
-                                                        <option>{{$sock->sock}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
+                                            <input class="input--style-5" type="text" name="sock" required>
                                             <label class="label--desc">Kaos Kaki</label>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group-desc">
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="color" required>
-                                                    <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                                    @foreach($colors as $color)
-                                                        <option>{{$color->color}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
+                                            <input class="input--style-5" type="text" name="color" required>
                                             <label class="label--desc">warna</label>
                                         </div>
                                     </div>
@@ -116,19 +100,10 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Harga</div>
+                            <div class="name">Tanggal Pesan</div>
                             <div class="value">
-                                <div class="row row-refine">
-                                    <div class="col-3">
-                                        <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" value="Rp." disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="price" required>
-                                        </div>
-                                    </div>
+                                <div class="input-group">
+                                    <input class="input--style-5" type="date" name="date" required>
                                 </div>
                             </div>
                         </div>

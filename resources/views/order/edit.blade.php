@@ -36,29 +36,13 @@
                                 <div class="row row-space">
                                     <div class="col-6">
                                         <div class="input-group-desc">
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="sock" required>
-                                                    <option disabled="disabled">Choose option</option>
-                                                    @foreach($socks as $sock)
-                                                        <option value="{{$sock->sock}}" {{ ($order->sock  == $sock->sock) ? 'selected' : '' }}>{{$sock->sock}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
+                                            <input class="input--style-5" type="text" name="sock" value="{{$order->sock}}" required>
                                             <label class="label--desc">Kaos Kaki</label>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group-desc">
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="color" required>
-                                                    <option disabled="disabled">Choose option</option>
-                                                    @foreach($colors as $color)
-                                                        <option value="{{$color->color}}" {{ ($order->color  == $color->color) ? 'selected' : '' }}>{{$color->color}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
+                                            <input class="input--style-5" type="text" name="color" value="{{$order->color}}" required>
                                             <label class="label--desc">warna</label>
                                         </div>
                                     </div>
@@ -104,26 +88,6 @@
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">Harga</div>
-                            <div class="value">
-                                <div class="row row-refine">
-                                    <div class="col-3">
-                                        <div class="input-group-desc">
-                                            <!-- <h4><b>Rp.</b></h4> -->
-                                            <input class="input--style-5" type="text" value="Rp." disabled>
-                                            <!-- <label class="label--desc">Area Code</label> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="price" value="{{ $order->price }}" required>
-                                            <!-- <label class="label--desc">Phone Number</label> -->
                                         </div>
                                     </div>
                                 </div>

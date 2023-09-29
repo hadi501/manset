@@ -17,7 +17,6 @@ class Order extends Model
         'amount',
         'date',
         'deadline',
-        'price',
         'status',
         'created_at',
         'updated_at'
