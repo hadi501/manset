@@ -56,7 +56,6 @@ class OrderController extends Controller
             $order            = Order::find($data[0]->id);
             $order->amount    = $order->amount + $amount;
             $order->deadline  = $request->deadline;
-            $order->price     = $order->price + $request->price;
             
             $order->save();
 
@@ -67,9 +66,8 @@ class OrderController extends Controller
                 'color'     => $request->color,
                 'size'      => $size,
                 'amount'    => $amount,
-                'date'      => Carbon::now()->toDateString(),
+                'date'      => $request->date,
                 'deadline'  => $request->deadline,
-                'price'     => $request->price,
                 'status'    => '0'
             ]);
         }
@@ -85,7 +83,7 @@ class OrderController extends Controller
      */
     public function detail()
     {
-        $orders    = Order::with(['production', 'finishing'])->get();
+        $orders    = Order::with(['production', 'finishing'])->where('status', '0')->get();
         $customers = Order::select([DB::raw("customer as customer"), DB::raw("SUM(amount) as amount")])->where('status', '0')->groupBy('customer')->get();
 
         return view('order.detail',['orders' => $orders, 'customers' => $customers]);
@@ -146,7 +144,6 @@ class OrderController extends Controller
         $order->color     = $request->color;
         $order->size      = $size;
         $order->amount    = $amount;
-        $order->price     = $request->price;
         $order->deadline  = $request->deadline;
             
         $order->save();
@@ -160,7 +157,7 @@ class OrderController extends Controller
      */
     public function history()
     {
-        $orders    = Order::with(['production', 'finishing'])->get();
+        $orders    = Order::with(['production', 'finishing'])->where('status', '1')->get();
         $customers = Order::select([DB::raw("customer as customer"), DB::raw("SUM(amount) as amount")])->where('status', '1')->groupBy('customer')->get();
 
         return view('order.history',['orders' => $orders, 'customers' => $customers]);
