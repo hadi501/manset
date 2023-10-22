@@ -44,15 +44,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table id="table-detail" class="detail-table" class="display">
+                <!-- <div class="table-responsive"> -->
+                    <table class="table-detail display nowrap responsive" style="width:100%">
                         <thead>
                             <tr>
-                                <th class="w-20">Kaos Kaki</th>
-                                <th>Warna</th>
-                                <th class="w-10">Ukuran</th>
-                                <th class="w-10">Jumlah</th>
-                                <th class="w-10">Produksi</th>
-                                <th class="w-10">Finishing</th>
+                                <th >Kaos Kaki</th>
+                                <th >Warna</th>
+                                <th >Ukuran</th>
+                                <th >Jumlah</th>
+                                <th >Produksi</th>
+                                <th >Finishing</th>
                                 <th>Deadline</th>
                                 <th>Aksi</th>
                             </tr>
@@ -84,6 +85,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                <!-- </div> -->
                 </div>
                 <div class="modal-footer">
                 </div>
@@ -112,12 +114,14 @@
 
         <!-- Main CSS-->
         <link href="{{ asset('css/order/detail.css') }}" rel="stylesheet" media="all">
+
     @endpush
 
     @push('scripts')
         
         <!-- Main JS-->
         <script src="{{ asset('js/order/detail.js') }}"></script>
+
     @endpush
 
 @endsection

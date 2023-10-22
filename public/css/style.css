@@ -371,3 +371,7 @@ main .post-content .post-meta {
 .burger:focus {
     outline: none;
 }
+
+div.dataTables_wrapper div.dataTables_length select{
+    width: 50px !important;
+}

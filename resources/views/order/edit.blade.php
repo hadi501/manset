@@ -13,7 +13,7 @@
                     {{ csrf_field() }}
                     @method('PUT')
 
-                        <div class="form-row m-b-55">
+                        <div class="form-row m-b-20">
                             <div class="name">Pemesan</div>
                             <div class="value">
                                 <div class="row row-space">
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row m-b-55">
+                        <div class="form-row m-b-20">
                             <div class="name">Pesanan</div>
                             <div class="value">
                                 <div class="row row-space">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row m-b-55">
+                        <div class="form-row m-b-20">
                             <div class="name">Ukuran</div>
                             <div class="value">
                                 <div class="row row-space">
@@ -69,7 +69,7 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-row m-b-20">
                             <div class="name">Jumlah</div>
                             <div class="value">
                                 <div class="row row-space">
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row m-b-30">
                             <div class="name">Deadline</div>
                             <div class="value">
                                 <div class="input-group">
@@ -103,12 +103,8 @@
                         </div>
                         <div>
                             <div class="row">
-                                <div class="col">
-                                </div>
-                                <div class="col">
+                                <div class="col d-flex justify-content-center">
                                     <button class="btn btn--radius-2 btn--red btn-input-order" type="submit">Input</button>
-                                </div>
-                                <div class="col">
                                 </div>
                             </div>
                         </div>

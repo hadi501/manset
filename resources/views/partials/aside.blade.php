@@ -41,6 +41,7 @@
               <div id="collapseTwo" class="collapse" aria-labelledby="headingOne">
                 <div>
                   <ul>
+                    <li><a href="{{ route('production.index') }}">Home</a></li>
                     <li><a href="{{ route('production.create') }}">Input</a></li>
                     <li><a href="{{ route('production.detail') }}">Detail</a></li>
                     <li><a href="{{ route('production.history') }}">History</a></li>
@@ -56,6 +57,7 @@
               <div id="collapseThree" class="collapse" aria-labelledby="headingOne">
                 <div>
                   <ul>
+                    <li><a href="{{ route('finishing.index') }}">Home</a></li>
                     <li><a href="{{ route('finishing.create') }}">Input</a></li>
                     <li><a href="{{ route('finishing.detail') }}">Detail</a></li>
                     <li><a href="{{ route('finishing.history') }}">History</a></li>

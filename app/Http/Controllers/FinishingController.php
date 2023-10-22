@@ -17,7 +17,7 @@ class FinishingController extends Controller
      */
     public function index()
     {
-        //
+        return view('finishing.index');
     }
 
     /**

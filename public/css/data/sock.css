@@ -50,7 +50,8 @@
   }
   
   .modal-dialog{
-      max-width: 80%;
+    max-width: 80%;
+    margin: auto;
   }
 
   .modal-body{
@@ -58,7 +59,7 @@
   }
   
   .modal-content{
-    width: 70%;
+    width: 90%;
     padding: 3%;
     margin: auto;
   }

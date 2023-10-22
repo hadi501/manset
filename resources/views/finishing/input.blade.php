@@ -11,11 +11,11 @@
                 <div class="card-body">
                     <form action="{{route('finishing.store')}}" method="POST">
                         {{ csrf_field() }}
-                        <div class="form-row">
+                        <div class="form-row m-b-20">
                             <div class="name">Tanggal</div>
                             <div class="value">
                                 <div class="row row-space">
-                                    <div class="col-6">
+                                    <div class="col">
                                         <div class="input-group-desc">
                                             <input class="input--style-5" type="date" name="date" id="date" required>
                                             <!-- <label class="label--desc">ID PO</label> -->
@@ -24,11 +24,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row m-b-55">
+                        <div class="form-row m-b-20">
                             <div class="name">Karyawan</div>
                             <div class="value">
                                 <div class="row row-space">
-                                    <div class="col-6">
+                                    <div class="col">
                                         <div class="input-group-desc">
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select name="employe_id" required>
@@ -42,57 +42,48 @@
                                             <!-- <label class="label--desc">Karyawan</label> -->
                                         </div>
                                     </div>
-                                    <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <input class="input--style-5" type="number" name="order_id" id="order_id" required>
-                                            <label class="label--desc">ID PO</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <input class="input--style-5" type="number" name="amount" required>
-                                            <label class="label--desc">Jumlah</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="unit" required>
-                                                    <option disabled="disabled" selected="selected" value="">Unit</option>
-                                                    <option value="0">Lusin</option>
-                                                    <option value="1">Pasang</option>
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
-                                            <label class="label--desc">Unit</label>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="form-row m-b-20">
+                            <div class="col">
+                                <div class="input-group-desc">
+                                    <input class="input--style-5" type="number" name="order_id" id="order_id" required>
+                                    <label class="label--desc">ID PO</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group-desc">
+                                    <input class="input--style-5" type="number" name="amount" required>
+                                    <label class="label--desc">Jumlah</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group-desc">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="unit" required>
+                                            <option disabled="disabled" selected="selected" value="">Unit</option>
+                                            <option value="0">Lusin</option>
+                                            <option value="1">Pasang</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                    <label class="label--desc">Unit</label>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-row m-b-30">
-                            <div class="col">
-                            </div>
-                            <div class="col">
-                            </div>
-                            <div class="col">
-                            </div>
-                            <div class="col">
+                            <div class="col d-flex justify-content-center">
                                 <button class="btn btn--radius-2 btn--red btn-input-order" type="submit">Input</button>
-                            </div>
-                            <div class="col">
-                            </div>
-                            <div class="col">
-                            </div>
-                            <div class="col">
                             </div>
                         </div>
                     </form>
-                    <table id="myTable" class="display">
+                    <table id="myTable" class="display" width="100%">
                         <thead>
                             <tr>
                                 <th class="th-detail">Pemesan</th>
-                            <th class="th-detail">Jumlah Pesanan</th>
+                                <th class="th-detail">Jumlah Pesanan</th>
                                 <th class="th-detail">Aksi</th>
                             </tr>
                         </thead>
@@ -124,7 +115,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table-detail">
+                    <table class="table-detail display nowrap responsive" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Kaos Kaki</th>

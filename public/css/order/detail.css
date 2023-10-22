@@ -48,8 +48,15 @@
 
 .modal-dialog{
     max-width: 80%;
+    margin: auto;
 }
 
 .modal-content{
     padding: 3%;
 }
+
+/* @media (min-width: 1200px) {
+  .container {
+    width: 500px;
+  }
+} */

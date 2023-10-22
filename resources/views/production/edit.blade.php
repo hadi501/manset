@@ -12,11 +12,11 @@
                     <form action="{{route('production.update', $production->id)}}" method="POST">
                     {{ csrf_field() }}
                     @method('PUT')
-                        <div class="form-row m-b-55">
+                        <div class="form-row m-b-20">
                             <div class="name">Pemesan</div>
                             <div class="value">
                                 <div class="row row-space">
-                                    <div class="col-12">
+                                    <div class="col">
                                         <div class="input-group-desc" hidden>
                                             <input class="input--style-5" type="number" name="id" value="{{ $production->id }}" required>
                                             <!-- <label class="label--desc">first name</label> -->
@@ -29,17 +29,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row m-b-55">
+                        <div class="form-row m-b-20">
                             <div class="name">Pesanan</div>
                             <div class="value">
                                 <div class="row row-space">
-                                    <div class="col-6">
+                                    <div class="col">
                                         <div class="input-group-desc">
                                             <input class="input--style-5" type="text" name="sock" value="{{$production->order->sock}}" readonly>
                                             <label class="label--desc">Kaos Kaki</label>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col">
                                         <div class="input-group-desc">
                                             <input class="input--style-5" type="text" name="color" value="{{$production->order->color}}" readonly>
                                             <label class="label--desc">warna</label>
@@ -48,11 +48,43 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
+
+                        <div class="form-row m-b-20">
+                            <div class="name">Tanggal</div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" type="text" name="machine_no" value="{{\Carbon\Carbon::parse($production->date)->format('d M Y')}}" readonly>
+                                            <!-- <label class="label--desc">Dimensi 1</label> -->
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group-desc">
+                                        @switch($production->shift)
+                                            @case(0)
+                                                <input class="input--style-5" type="text" name="machine_no" value="Pagi" readonly>
+                                                @break
+                                            @case(1)
+                                                <input class="input--style-5" type="text" name="machine_no" value="Siang" readonly>
+                                                @break
+                                            @case(2)
+                                                <input class="input--style-5" type="text" name="machine_no" value="Malam" readonly>
+                                                @break
+                                            @default
+                                                <input class="input--style-5" type="text" name="machine_no" value="Error" readonly>
+                                        @endswitch
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row m-b-20">
                             <div class="name">No Mesin</div>
                             <div class="value">
                                 <div class="row row-space">
-                                    <div class="col-6">
+                                    <div class="col">
                                         <div class="input-group-desc">
                                             <input class="input--style-5" type="number" name="machine_no" value="{{$production->machine_no}}" readonly>
                                             <!-- <label class="label--desc">Dimensi 1</label> -->
@@ -62,7 +94,7 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-row m-b-30">
                             <div class="name">Jumlah</div>
                             <div class="value">
                                 <div class="row row-space">
@@ -72,7 +104,7 @@
                                             <!-- <label class="label--desc">Dimensi 1</label> -->
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col">
                                         <div class="input-group-desc">
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select name="unit" required>
@@ -98,12 +130,8 @@
                         </div> -->
                         <div>
                             <div class="row">
-                                <div class="col">
-                                </div>
-                                <div class="col">
+                                <div class="col d-flex justify-content-center">
                                     <button class="btn btn--radius-2 btn--red btn-input-order" type="submit">Input</button>
-                                </div>
-                                <div class="col">
                                 </div>
                             </div>
                         </div>

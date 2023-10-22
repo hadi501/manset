@@ -1,8 +1,21 @@
 $(document).ready( function () {
-    $('#myTable').DataTable();
-    $('.table-detail').DataTable();
-	amountFormat();
-} );
+    amountFormat();
+    $('#myTable').DataTable({
+        responsive: true
+    });
+});
+
+let modalcount = 0;
+
+$('.modal').on('shown.bs.modal', function() {
+    if (modalcount==0){
+        table = $('.table-detail').DataTable({
+            responsive: true
+        })
+    }
+    modalcount++;
+    table.columns.adjust().responsive.recalc();
+ });
 
 $('.btn').on('click', function(e) {
     if ($(this).hasClass('disable')) {

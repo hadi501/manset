@@ -11,11 +11,11 @@
                 <div class="card-body">
                     <form action="{{route('order.store')}}" method="POST">
                         {{ csrf_field() }}
-                        <div class="form-row">
+                        <div class="form-row m-b-20">
                             <div class="name">Pemesan</div>
                             <div class="value">
                                 <div class="row row-space">
-                                    <div class="col-10">
+                                    <div class="col-9">
                                         <div class="input-group-desc" id="customerInput">
                                             <div class="rs-select2 js-select-simple select--no-search customer0">
                                                 <select class="select-customer" name="customer" required>
@@ -26,17 +26,16 @@
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>
-
                                             <input class="input--style-5 customer1" type="text" name="customer" disabled hidden>
                                         </div>
                                     </div>
-                                    <div class="col-sm-2 d-flex justify-content-center">
+                                    <div class="col-3 h-25 d-flex justify-content-center">
                                         <button type="submit" class="btn btn-change btn-danger disable" onclick="ubahForm()"></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row m-b-55">
+                        <div class="form-row m-b-20">
                             <div class="name">Pesanan</div>
                             <div class="value">
                                 <div class="row row-space">
@@ -55,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row m-b-55">
+                        <div class="form-row m-b-20">
                             <div class="name">Ukuran</div>
                             <div class="value">
                                 <div class="row row-space">
@@ -75,7 +74,7 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-row m-b-20">
                             <div class="name">Jumlah</div>
                             <div class="value">
                                 <div class="row row-space">
@@ -99,7 +98,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row m-b-20">
                             <div class="name">Tanggal Pesan</div>
                             <div class="value">
                                 <div class="input-group">
@@ -107,7 +106,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row m-b-30">
                             <div class="name">Deadline</div>
                             <div class="value">
                                 <div class="input-group">
@@ -117,12 +116,8 @@
                         </div>
                         <div>
                             <div class="row">
-                                <div class="col">
-                                </div>
-                                <div class="col">
+                                <div class="col d-flex justify-content-center">
                                     <button class="btn btn--radius-2 btn--red btn-input-order" type="submit">Input</button>
-                                </div>
-                                <div class="col">
                                 </div>
                             </div>
                         </div>

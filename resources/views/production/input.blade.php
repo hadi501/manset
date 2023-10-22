@@ -11,24 +11,24 @@
                 <div class="card-body">
                     <form action="{{route('production.store')}}" method="POST">
                         {{ csrf_field() }}
-                        <div class="form-row">
+                        <div class="form-row m-b-20">
                             <div class="name">Tanggal</div>
                             <div class="value">
                                 <div class="row row-space">
-                                    <div class="col-6">
+                                    <div class="col">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="date" name="date" required>
+                                            <input class="input--style-5" type="date" name="date" placeholder="hari" required>
                                             <!-- <label class="label--desc">Dimensi 1</label> -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row m-b-20">
                             <div class="name">Shift</div>
                             <div class="value">
                                 <div class="row row-space">
-                                    <div class="col-6">
+                                    <div class="col">
                                         <div class="input-group-desc">
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select name="shift" required>
@@ -45,73 +45,58 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row m-b-55">
+                        <div class="form-row m-b-20">
                             <!-- <div class="value"> -->
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="input-group-desc">
+                                    <label class="label--desc">Operator</label>
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="employe_id" required>
                                             <option disabled="disabled" selected="selected" value="">Choose option</option>
                                             @foreach($operators as $operator)
-                                                <option value="{{$operator->id}}">{{$operator->name}}</option>
+                                            <option value="{{$operator->id}}">{{$operator->name}}</option>
                                             @endforeach
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
-                                    <label class="label--desc">Operator</label>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col">
                                 <div class="input-group-desc">
+                                    <label class="label--desc">Mesin</label>
                                     <input class="input--style-5" type="number" name="machine_no" required>
-                                    <label class="label--desc">No Mesin</label>
                                 </div>
                             </div>
-                        <!-- </div> -->
-                        
-                            <!-- <div class="value"> -->
-                                <div class="col-2">
-                                    <div class="input-group-desc">
-                                        <input class="input--style-5" type="number" name="order_id" id="order_id" required>
-                                        <label class="label--desc">ID PO</label>
+                            <div class="col">
+                                <div class="input-group-desc">
+                                    <label class="label--desc">ID PO</label>
+                                    <input class="input--style-5" type="number" name="order_id" id="order_id" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group-desc">
+                                    <label class="label--desc">Jumlah</label>
+                                    <input class="input--style-5" type="number" name="amount" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group-desc">
+                                    <label class="label--desc">Unit</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="unit" required>
+                                            <option disabled="disabled" selected="selected" value="">Unit</option>
+                                            <option value="0">Lusin</option>
+                                            <option value="1">Pasang</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
                                     </div>
                                 </div>
-                                <div class="col-2">
-                                    <div class="input-group-desc">
-                                        <input class="input--style-5" type="number" name="amount" required>
-                                        <label class="label--desc">Jumlah</label>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="input-group-desc">
-                                        <div class="rs-select2 js-select-simple select--no-search">
-                                            <select name="unit" required>
-                                                <option disabled="disabled" selected="selected" value="">Unit</option>
-                                                <option value="0">Lusin</option>
-                                                <option value="1">Pasang</option>
-                                            </select>
-                                            <div class="select-dropdown"></div>
-                                        </div>
-                                        <label class="label--desc">Unit</label>
-                                    </div>
-                                </div>
+                            </div>
                         <!-- </div> -->
                         </div>
                         <div class="form-row m-b-30">
-                            <div class="col">
-                            </div>
-                            <div class="col">
-                            </div>
-                            <div class="col">
-                            </div>
-                            <div class="col">
+                            <div class="col d-flex justify-content-center">
                                 <button class="btn btn--radius-2 btn--red btn-input-order" type="submit">Input</button>
-                            </div>
-                            <div class="col">
-                            </div>
-                            <div class="col">
-                            </div>
-                            <div class="col">
                             </div>
                         </div>
                     </form>
@@ -119,7 +104,7 @@
                         <thead>
                             <tr>
                                 <th class="th-detail">Pemesan</th>
-                            <th class="th-detail">Jumlah Pesanan</th>
+                                <th class="th-detail">Jumlah Pesanan</th>
                                 <th class="th-detail">Aksi</th>
                             </tr>
                         </thead>
@@ -153,7 +138,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table id="table-detail" class="detail-table" class="display">
+                    <table class="table-detail display nowrap responsive" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Kaos Kaki</th>

@@ -15,17 +15,18 @@
                             <td>: -</td>
                         </tr>
                     </table> -->
-                    <table id="myTable" class="display">
+                    <table id="myTable" class="display" width="100%">
                         <thead>
                             <tr>
                                 <th hidden>#</th>
-                                <th class="w-15">Tanggal</th>
-                                <th class="w-15">Tugas</th>
-                                <th class="w-15">Karyawan</th>
-                                <th class="w-15">Pemesan</th>
-                                <th class="w-15">Kaos Kaki</th>
-                                <th class="w-15">Jumlah</th>
-                                <th class="w-10">Aksi</th>
+                                <th class="w-12-5">Tanggal</th>
+                                <th class="w-12-5">Tugas</th>
+                                <th class="w-12-5">Karyawan</th>
+                                <th class="w-12-5">Pemesan</th>
+                                <th class="w-12-5">Kaos Kaki</th>
+                                <th class="w-12-5">Warna</th>
+                                <th class="w-12-5">Jumlah</th>
+                                <th class="w-12-5">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,6 +54,7 @@
                                 <td>{{$finish->employe->name}}</td>
                                 <td data-toggle="popover" title="Jempol Polos" data-content="Warna: {{$finish->order->color}} <br /> Ukuran: {{$finish->order->size}} <br /> Pesanan: {{$finish->order->amount/12}} dz" data-html="true">{{$finish->order->customer}}</td>
                                 <td>{{$finish->order->sock}}</td>
+                                <td>{{$finish->order->color}}</td>
                                 <td class="amount">{{$finish->amount}}</td>
                                 <td>
                                     <a href="{{ route('finishing.edit', $finish->id) }}">

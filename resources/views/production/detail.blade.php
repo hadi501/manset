@@ -39,18 +39,19 @@
                             </td>
                         </tr>
                     </table> -->
-                    <table id="myTable" class="display">
+                    <table id="myTable" class="display" width="100%">
                         <thead>
                             <tr>
                                 <th hidden>#</th>
-                                <th class="w-15">Tanggal</th>
-                                <th class="w-10">Shift</th>
-                                <th class="w-15">Karyawan</th>
-                                <th class="w-10">No Mesin</th>
-                                <th class="w-15">Pemesan</th>
-                                <th class="w-15">Kaos Kaki</th>
-                                <th class="w-10">Jumlah</th>
-                                <th class="w-10">Edit</th>
+                                <th>Tanggal</th>
+                                <th>Shift</th>
+                                <th>Mesin</th>
+                                <th>Karyawan</th>
+                                <th>Pemesan</th>
+                                <th>Kaos Kaki</th>
+                                <th>Warna</th>
+                                <th>Jumlah</th>
+                                <th>Edit</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -71,10 +72,11 @@
                                     @default
                                         <td>Something went wrong, please try again</td>
                                 @endswitch
-                                <td>{{$production->employe->name}}</td>
                                 <td>{{$production->machine_no}}</td>
+                                <td>{{$production->employe->name}}</td>
                                 <td data-toggle="popover" title="{{$production->order->sock}}" data-content="Warna: {{$production->order->color}} <br /> Ukuran: {{$production->order->size}} <br /> Pesanan: {{$production->order->amount/12}} dz" data-html="true">{{$production->order->customer}}</td>
                                 <td>{{$production->order->sock}}</td>
+                                <td>{{$production->order->color}}</td>
                                 <td class="amount">{{$production->amount}}</td>
                                 <td>
                                     <a href="{{ route('production.edit', $production->id) }}">

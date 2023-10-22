@@ -1,7 +1,3 @@
-$(document).ready( function () {
-    $('.detail-table').DataTable();
-} );
-
 //delete confirmation
 const deleteData = (id) => {
     const formDelete = document.querySelector('#form-delete');

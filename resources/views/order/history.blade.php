@@ -44,7 +44,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table id="table-detail" class="detail-table" class="display">
+                    <table class="table-detail display nowrap responsive" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Kaos Kaki</th>

@@ -9,17 +9,19 @@
                     <h2 class="title">History Produksi</h2>
                 </div>
                 <div class="card-body">
-                    <table id="myTable" class="display">
+                    <table id="myTable" class="display" width="100%">
                         <thead>
                             <tr>
                                 <th hidden>#</th>
-                                <th class="w-15">Tanggal</th>
-                                <th class="w-10">Shift</th>
-                                <th class="w-15">Karyawan</th>
-                                <th class="w-10">No Mesin</th>
-                                <th class="w-15">Pemesan</th>
-                                <th class="w-15">Kaos Kaki</th>
-                                <th class="w-10">Jumlah</th>
+                                <th>Tanggal</th>
+                                <th>Shift</th>
+                                <th>Jumlah</th>
+                                <th>Karyawan</th>
+                                <th>No Mesin</th>
+                                <th>Pemesan</th>
+                                <th>Kaos Kaki</th>
+                                <th>Warna</th>
+                                <th>Ukuran</th>
                                 <!-- <th class="w-10">Edit</th> -->
                             </tr>
                         </thead>
@@ -41,11 +43,13 @@
                                     @default
                                         <td>Something went wrong, please try again</td>
                                 @endswitch
+                                <td class="amount">{{$production->amount}}</td>
                                 <td>{{$production->employe->name}}</td>
                                 <td>{{$production->machine_no}}</td>
                                 <td data-toggle="popover" title="{{$production->order->sock}}" data-content="Warna: {{$production->order->color}} <br /> Ukuran: {{$production->order->size}} <br /> Pesanan: {{$production->order->amount/12}} dz" data-html="true">{{$production->order->customer}}</td>
                                 <td>{{$production->order->sock}}</td>
-                                <td class="amount">{{$production->amount}}</td>
+                                <td>{{$production->order->color}}</td>
+                                <td>{{$production->order->size}}</td>
                                 <!-- <td>
                                     <a href="{{ route('production.edit', $production->id) }}">
                                         <button type="button" class="btn btn-warning btn-aksi" data-toggle="modal" data-target="#exampleModalCenter"></button>
