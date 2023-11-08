@@ -1,28 +1,38 @@
-.col-home{
-    margin: 0;
-    position: absolute;
-    top: 40%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+.container{
+    padding: 3%;
 }
 
-.judul{
-    font-size: 3rem;
-    font-weight: bold;
-    color: #002B5B;
+.row{
+    padding: 3% 0;
+    margin: 2%;
 }
 
-.mulai{
-    margin: 1% 0 0 0;
-    padding: 0.75rem;
-    font-size: 1.25rem;
-    background-color: #EA5455;
-    border-color: #EA5455;
-    color: #F9F5F0;
+.card{
+    width: 100%;
+    max-width: 30rem;
 }
 
-.mulai:hover{
-    background-color: #002B5B;
-    border-color: #002B5B;
-    color: #F9F5F0;
+.card-title, .card-text{
+    text-align: center;
+}
+
+.card-header{
+    border-bottom: 0px;
+    text-align: center;
+}
+
+/* .icon-person{
+    font-size: 4rem;
+} */
+
+@media (max-width: 767px) {
+    .container {
+      padding: 20% 5% 5% 5%;
+    }
+    /* .icon-person{
+        font-size: 2rem;
+    }
+    .card-title{
+        font-size: 2rem;
+    } */
 }
